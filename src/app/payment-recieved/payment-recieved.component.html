@@ -1,5 +1,9 @@
 <section class="paymentRecieved">
 
+    <section class="commonHeading">
+        <h1>Payment Allocated / Allocate Fund</h1>
+    </section>
+
     <section class="row CommonMetricBox">
         <div class=" col-sm-12 col-md col-lg col-xs-12">
             <div class="CommonMetricBox__container" style="background-color: #5E6DB3">
@@ -63,15 +67,199 @@
         </div>
     </section>
 
+    <section class=" row paymentRecieved__allocate">
+        <section class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="allocateContainer">
+                <div class="row allocateFilter">
 
-    <div class="row">
-        <div class="col-md-6">
-            <div style="display: block;">
-                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    <div class="col-lg-7 col-md-7 col-sm col-xs noPadding">
+                        <h1>Filter:</h1>
+                        <select>
+                            <option>Allocated</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm col-xs end-lg end-md end-sm noPadding">
+                        <select>
+                            <option>Sort By</option>
+                        </select>
+                    </div>
+                </div>
+
+                <section class="paymentRecieved__allocateList">
+                    <ul>
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="paymentRecieved__allocateDetails">
+                            <a>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h2>21/3/2017</h2>
+                                        <h3>NA125</h3>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
+                                        <h2>Allocate</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </section>
+
             </div>
-        </div>
-        <div class="col-md-6" style="margin-bottom: 10px">
-        </div>
-    </div>
+        </section>
+        <section class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+            <div class="allocateContainerGraph">
+                <div class="row allocateFilter">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
+                        <h1>TLR Distribution Graph</h1>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div style="display: block;">
+                            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+    <section class=" row paymentRecieved__allocate">
+        <section class="col-lg col-md col-sm col-xs">
+            <div class="allocateContainerGraph">
+                <div class="row allocateFilter">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
+                        <h1>TLR Distribution Graph</h1>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div style="display: block">
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColor" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="col-lg col-md col-sm col-xs">
+
+            <div class="allocateContainerGraph">
+                <div class="row allocateFilter">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
+                        <h1>TLR Distribution Graph</h1>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div style="display: block">
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
 
 </section>

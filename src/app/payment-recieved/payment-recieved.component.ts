@@ -41,6 +41,25 @@ export class PaymentRecievedComponent implements OnInit {
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
+
+
+   public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+ 
+  public barChartData:any[] = [
+    {data: [65, 59, 70, 81, 56, 55, 40], label: 'Series A'}
+  ];
+
+  public barChartColor:Array<any> = [
+    {
+        backgroundColor: '#86C7F3',
+    }
+  ]
  
   
 }
