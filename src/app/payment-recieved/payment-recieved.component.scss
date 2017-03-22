@@ -2,6 +2,16 @@
 
 .CommonMetricBox {
     &__container {
-        border: 1px solid pink;
+        height: 130px;
+        position: relative;
+        h1 {}
+        h2 {}
+        &--styleDivider {
+            position: absolute;
+            bottom: 22px;
+            left: 18px;
+            border: 2px solid #fff;
+            width: 80%;
+        }
     }
 }
