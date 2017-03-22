@@ -4,8 +4,23 @@
     &__container {
         height: 130px;
         position: relative;
-        h1 {}
-        h2 {}
+        h1 {
+            font-size: 18px;
+            font-weight: 300;
+            color: #fff;
+            span {
+                display: block;
+            }
+        }
+        h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 300;
+            i {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+        }
         &--styleDivider {
             position: absolute;
             bottom: 22px;
