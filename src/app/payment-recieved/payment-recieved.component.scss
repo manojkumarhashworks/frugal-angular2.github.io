@@ -1,0 +1,17 @@
+.paymentRecieved {}
+
+.CommonMetricBox {
+    &__container {
+        height: 130px;
+        position: relative;
+        h1 {}
+        h2 {}
+        &--styleDivider {
+            position: absolute;
+            bottom: 22px;
+            left: 18px;
+            border: 2px solid #fff;
+            width: 80%;
+        }
+    }
+}
