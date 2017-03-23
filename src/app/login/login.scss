@@ -1,14 +1,12 @@
-
-
-
-
 .login {
 	width:100%;
 	text-align:center;
 	overflow: hidden;
 	padding:0;	
 	height:100vh;
-	background: url("../../images/1.jpg");
+	background: url("../../images/back1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
 
 	&__img{
 		margin-top:15%;
@@ -22,13 +20,14 @@
 		border-radius:19px;
 		width: 40%;
 		margin-left: 30%;
+		
 	}
 	&__name {
 		margin:5% 25%;
-		width: 45%;
-		border:1px solid #a52a2a;
+		width: 50%;
+		border:1px solid #dcdcdc;
 		
-    border-radius:10px important;
+    border-radius:10px;
 		padding: 10px;
 text-align: left;
 img {
@@ -43,9 +42,9 @@ img {
 	}
 	&__pwd {
 		margin-left: 25%;
-width: 45%;
+width: 50%;
 
-border: 1px solid brown;
+border: 1px solid #dcdcdc;
 padding: 10px;
 
     border-radius:10px;
@@ -62,12 +61,12 @@ text-align: left;
 	}
 	&__submit {
 	width:15%;
-	background-color: #4CAF50;
-    color: white;
+	background-color:deepskyblue;
+    color: #fff8dc;
     padding: 10px 20px;
     margin:5%;
 	border:none;
-    border-radius:10px !important;
+    border-radius:10px;
 	
     cursor: pointer;
 	}
