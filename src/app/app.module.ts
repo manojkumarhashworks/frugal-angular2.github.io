@@ -6,19 +6,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { ChartsModule } from 'ng2-charts';
 
 /* Routing Main Module */
 import { AppComponent } from './app.component';
 
 /* Module Imports */
 import { LoginModule } from './login/login.module';
-import { FundDistributionComponent } from './fund-distribution/fund-distribution.component';
+import { FundDistributionModule } from './fund-distribution/fund-distribution.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FundDistributionComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +26,9 @@ import { FundDistributionComponent } from './fund-distribution/fund-distribution
     RouterModule,
     LoginModule,
     AppRoutingModule,
-    PaymentRecievedModule
+    PaymentRecievedModule,
+    ChartsModule,
+    FundDistributionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
