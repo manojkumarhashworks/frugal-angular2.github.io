@@ -7,7 +7,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
-
+import { APP_CONFIG, AppConfig } from './app.config';
+ 
 /* Routing Main Module */
 import { AppComponent } from './app.component';
 
@@ -30,7 +31,7 @@ import { FundDistributionModule } from './fund-distribution/fund-distribution.mo
     ChartsModule,
     FundDistributionModule
   ],
-  providers: [],
+   providers: [{ provide: APP_CONFIG, useValue: AppConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
