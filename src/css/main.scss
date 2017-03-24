@@ -5,7 +5,72 @@
 }
 
 .header {
-    height: 56px;
+    height: 60px;
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    &__left{
+        width: 50%;
+    }
+    &__logo{
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+    }
+    &__list{
+        padding: 18px;
+        display: inline-block;
+        border-right: 1px solid rgba(0,0,0,.04);
+    }
+    &__listHeaderLinks{
+        display: inline-block;
+    }
+    &__search{
+        display: inline-block;
+    }
+    &__slider{
+        width: 40px;
+        height:35px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        background-color: rgba(0,0,0,.1);
+        border-width: 1px;
+        border-style: none;
+    }
+    &__searchicon{
+        width: 40px;
+        height: 35px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        background-color: rgba(0,0,0,.1);
+        margin-left: -5px;
+        border-width: 1px;
+        border-style: none;
+    }
+    &__searchbox{
+        width: 200px;
+        height: 35px;
+        background-color: rgba(0,0,0,.1);
+        padding:8px;
+        margin-left: -5px;
+        border-width: 1px;
+        border-style: none;
+        border-left: 1px solid #cec6c6;
+        border-right: 1px solid #cec6c6;
+    }
+    &__right{
+        width: 50%;
+        right: 0;
+        text-align: right;
+    }
+    &__RightList{
+        padding: 18px;
+        display: inline-block;
+        border-right: 1px solid rgba(0,0,0,.04); 
+    }
+    &__profile{
+        border-radius: 50%;
+    }
 }
 body {
     padding: 0;
@@ -27,4 +92,27 @@ body {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122, 153, 217)), color-stop(0.72, rgb(73, 125, 189)), color-stop(0.86, rgb(28, 58, 148)));
+}
+.footer{
+    width: 100%;
+    height: 65px;
+    background-color: #ffffff;
+    display: flex;
+    line-height: 65px;
+    padding: 0 28px;
+    font-size: 13px;
+    &__left{
+        width: 50%;
+        
+         color: #777676;
+    }
+    &__right{
+        width: 50%;
+        text-align: right;
+        color: #7b7bf1;
+    }
+    &__list{
+        display: inline-block;
+        padding-left: 30px;
+    }
 }
