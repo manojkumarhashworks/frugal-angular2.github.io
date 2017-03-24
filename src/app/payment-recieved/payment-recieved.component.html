@@ -87,19 +87,18 @@
 
                 <section class="paymentRecieved__allocateList">
                     <ul>
-                        <pre>{{allPaymentList | json}}</pre>
                         <li class="paymentRecieved__allocateDetails" *ngFor="let list of allPaymentList">
                             <a>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
                                         <h1>{{list.clientName}}</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
+                                        <h2>{{list.depositReceivedDate}}</h2>
+                                        <h3>{{list.depositID}}</h3>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
+                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>{{list.depositAmount}}</h1>
+                                        <h2>{{list.depositStatus}}</h2>
                                     </div>
                                 </div>
                             </a>
