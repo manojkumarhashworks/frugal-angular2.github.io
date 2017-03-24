@@ -1,5 +1,5 @@
 <section class="paymentRecieved">
-
+    <button (click)="test()">test</button> {{startDate}}
     <section class="commonHeading">
         <h1>Payment Allocated / Allocate Fund</h1>
     </section>
@@ -87,46 +87,12 @@
 
                 <section class="paymentRecieved__allocateList">
                     <ul>
-
-                        <li class="paymentRecieved__allocateDetails">
+                        <pre>{{allPaymentList | json}}</pre>
+                        <li class="paymentRecieved__allocateDetails" *ngFor="let list of allPaymentList">
                             <a>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="paymentRecieved__allocateDetails">
-                            <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="paymentRecieved__allocateDetails">
-                            <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
+                                        <h1>{{list.clientName}}</h1>
                                         <h2>21/3/2017</h2>
                                         <h3>NA125</h3>
                                     </div>
@@ -140,57 +106,6 @@
                         </li>
 
 
-                        <li class="paymentRecieved__allocateDetails">
-                            <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-
-                        <li class="paymentRecieved__allocateDetails">
-                            <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="paymentRecieved__allocateDetails">
-                            <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
-                                        <h1>Lollipop Pvt Ltd</h1>
-                                        <h2>21/3/2017</h2>
-                                        <h3>NA125</h3>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>12000</h1>
-                                        <h2>Allocate</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
 
                     </ul>
                 </section>

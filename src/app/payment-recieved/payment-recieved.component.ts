@@ -1,6 +1,7 @@
+import { paymentRecievedService } from './payment-recieved.service';
 import { Component, OnInit } from '@angular/core';
 import { Router,RouterModule } from '@angular/router';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-payment-recieved',
   templateUrl: './payment-recieved.component.html',
@@ -8,9 +9,56 @@ import { Router,RouterModule } from '@angular/router';
 })
 export class PaymentRecievedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private paymentrecivedservice:paymentRecievedService) { }
 
   ngOnInit() {
+    this.tlrGraph();
+    this.getPaymentList();
+  }
+
+ oneYear:any = {};
+  allPaymentList:any = []
+
+  test() {
+    console.log(this.oneYearCalender())
+  }
+  oneYearCalender() {
+      let currentDate:any = moment();
+       let startDate = currentDate.subtract(1,"y").format("YYYY-MM-DD");
+       let endDate = moment().format("YYYY-MM-DD");
+      return  {  
+          startDate : startDate,
+          endDate : endDate
+      }
+  }
+
+  tlrGraph() {
+    this.paymentrecivedservice.gettlrGraph(this.oneYearCalender().startDate,this.oneYearCalender().endDate)
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+          console.log(error);
+      }
+    )
+  }
+
+  getPaymentList() {
+      this.oneYear = {
+       endDate:this.oneYearCalender().endDate,
+         startDate: this.oneYearCalender().startDate
+      }
+      debugger
+    this.paymentrecivedservice.getPaymentReceivedList(this.oneYear)
+    .subscribe(
+      data => {
+        this.allPaymentList.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   public lineChartData:Array<any> = [

@@ -7,5 +7,5 @@ export class IAppConfig {
 }
 
 export const AppConfig: IAppConfig = {
-    apiEndpoint: 'http://192.168.1.21:8011/api'
+    apiEndpoint: 'https://frugaldepositmicroservice.cfapps.io/api'
 };
