@@ -1,3 +1,4 @@
+import { paymentRecievedService } from './payment-recieved.service';
 import { PaymentRecievedRouting } from './payment-recieved.routing';
 import { PaymentRecievedComponent } from './payment-recieved.component';
 import {ChartsModule} from 'ng2-charts'
@@ -9,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,PaymentRecievedRouting,ChartsModule
   ],
-  declarations: [PaymentRecievedComponent]
+  declarations: [PaymentRecievedComponent],
+    providers: [paymentRecievedService]
 })
 export class PaymentRecievedModule{}
