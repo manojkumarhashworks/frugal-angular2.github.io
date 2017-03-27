@@ -57,6 +57,50 @@ export class paymentRecievedService {
       .catch(this.handleError);
   }
 
+
+  getTrlMetricValue(date:any) {
+    const body = JSON.stringify(date);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this
+      .http
+      .post(this.config.apiEndpoint + '/deposit/getTlrSum', JSON.stringify(date),{headers: headers})
+      .map((data : Response) => {
+        return data
+          .json().topLineRevenue;
+      })
+      .catch(this.handleError);
+  }
+
+
+getUndistributedFundMetric(date) {
+   const body = JSON.stringify(date);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this
+      .http
+      .post(this.config.apiEndpoint + '/deposit/getUndistributedDepositSum', JSON.stringify(date),{headers: headers})
+      .map((data : Response) => {
+        return data
+          .json().results;
+      })
+      .catch(this.handleError);
+}
+
+getOrMetricValue(date:any) {
+   const body = JSON.stringify(date);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this
+      .http
+      .post(this.config.apiEndpoint + '/deposit/getOutstandingReceivables', JSON.stringify(date),{headers: headers})
+      .map((data : Response) => {
+        return data
+          .json().outstandingReceivables;
+      })
+      .catch(this.handleError);
+}
+
   private handleError(error : any) {
     console.error('Erro:', error);
     return Observable.throw(error);
