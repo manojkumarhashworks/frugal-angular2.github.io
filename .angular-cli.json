@@ -20,7 +20,8 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "css/main.scss"
+            "css/main.scss",
+            "../node_modules/font-awesome/css/font-awesome.css"
         ],
         "scripts": [],
         "environmentSource": "environments/environment.ts",
@@ -29,6 +30,7 @@
             "prod": "environments/environment.prod.ts"
         }
     }],
+
     "e2e": {
         "protractor": {
             "config": "./protractor.conf.js"

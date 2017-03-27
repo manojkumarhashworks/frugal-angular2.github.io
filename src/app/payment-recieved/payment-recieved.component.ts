@@ -15,7 +15,15 @@ export class PaymentRecievedComponent implements OnInit {
     this.tlrGraph();
     this.orGraph();
     this.getPaymentList();
+    this.tlrMetric();
+    this.undistributedFund();
+    this.orMetricValue();
   }
+
+  //metric value 
+  tlrMetricValue:any;
+  unDistributedMetricValue:any;
+  OutStandingMetricValue:any;
 
   oneYear : any = {};
   allPaymentList : any = [];
@@ -28,7 +36,7 @@ export class PaymentRecievedComponent implements OnInit {
   oneYearCalender() {
     let currentDate : any = moment();
     let startDate = currentDate
-      .subtract(1, "y")
+      .subtract(2, "y")
       .format("YYYY-MM-DD");
     let endDate = moment().format("YYYY-MM-DD");
     return {startDate: startDate, endDate: endDate}
@@ -163,6 +171,69 @@ export class PaymentRecievedComponent implements OnInit {
       }, error => {
         console.log(error);
       })
+  }
+
+  tlrMetric() {
+     this.oneYear = {
+      endDate: this
+        .oneYearCalender()
+        .endDate,
+      startDate: this
+        .oneYearCalender()
+        .startDate
+    }
+    
+    this.paymentrecivedservice.getTrlMetricValue(this.oneYear)
+    .subscribe(
+      data=> {
+        this.tlrMetricValue = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  undistributedFund() {
+     this.oneYear = {
+      endDate: this
+        .oneYearCalender()
+        .endDate,
+      startDate: this
+        .oneYearCalender()
+        .startDate
+    }
+    
+    this.paymentrecivedservice.getUndistributedFundMetric(this.oneYear)
+    .subscribe(
+      data=> {
+        this.unDistributedMetricValue = data[0].UndistributedFund;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  orMetricValue() {
+    this.oneYear = {
+      endDate: this
+        .oneYearCalender()
+        .endDate,
+      startDate: this
+        .oneYearCalender()
+        .startDate
+    }
+    
+    this.paymentrecivedservice.getOrMetricValue(this.oneYear)
+    .subscribe(
+      data=> {
+        this.OutStandingMetricValue = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   public lineChartData : Array < any > = [

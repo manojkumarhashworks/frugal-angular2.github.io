@@ -1,5 +1,4 @@
 <section class="paymentRecieved">
-    <button (click)="test()">test</button> {{startDate}}
     <section class="commonHeading">
         <h1>Payment Allocated / Allocate Fund</h1>
     </section>
@@ -12,7 +11,8 @@
                         <h1>Top Line <span> Revenue </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>12000</h2>
+
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{tlrMetricValue}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -27,7 +27,7 @@
                         <h1>Unallocated<span> Fund </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>12000</h2>
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>1200</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+
         <div class=" col-sm-12 col-md col-lg col-xs-12">
             <div class="CommonMetricBox__container" style="background-color: #31CFF9">
                 <div class="row">
@@ -42,7 +43,8 @@
                         <h1>Undistributed<span> Fund </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>12000</h2>
+
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{unDistributedMetricValue}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -57,7 +59,7 @@
                         <h1>Outstanding <span> Receivables </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>12000</h2>
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{OutStandingMetricValue}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
