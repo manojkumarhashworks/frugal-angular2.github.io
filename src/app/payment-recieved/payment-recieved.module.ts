@@ -5,10 +5,12 @@ import {ChartsModule} from 'ng2-charts'
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @NgModule({
   imports: [
-    CommonModule,PaymentRecievedRouting,ChartsModule
+    CommonModule,PaymentRecievedRouting,ChartsModule, NgbModule.forRoot(),ToasterModule,FormsModule
   ],
   declarations: [PaymentRecievedComponent],
     providers: [paymentRecievedService]

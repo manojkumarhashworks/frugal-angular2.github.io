@@ -1,5 +1,6 @@
 @import './attribute.scss';
 @import './_utility.scss';
+@import './_bootstrap.scss';
 * {
     box-sizing: border-box;
 }
@@ -9,110 +10,112 @@
     background-color: #ffffff;
     width: 100%;
     display: flex;
-    &__left{
+    &__left {
         width: 50%;
     }
-    &__logo{
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
+    &__logo {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
     }
-    &__list{
+    &__list {
         padding: 18px;
         display: inline-block;
-        border-right: 1px solid rgba(0,0,0,.04);
+        border-right: 1px solid rgba(0, 0, 0, .04);
     }
-    &__listHeaderLinks{
+    &__listHeaderLinks {
         display: inline-block;
     }
-    &__search{
+    &__search {
         display: inline-block;
     }
-    &__slider{
+    &__slider {
         width: 40px;
-        height:35px;
+        height: 35px;
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
-        background-color: rgba(0,0,0,.1);
+        background-color: rgba(0, 0, 0, .1);
         border-width: 1px;
         border-style: none;
     }
-    &__searchicon{
+    &__searchicon {
         width: 40px;
         height: 35px;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
-        background-color: rgba(0,0,0,.1);
+        background-color: rgba(0, 0, 0, .1);
         margin-left: -5px;
         border-width: 1px;
         border-style: none;
     }
-    &__searchbox{
+    &__searchbox {
         width: 200px;
         height: 35px;
-        background-color: rgba(0,0,0,.1);
-        padding:8px;
+        background-color: rgba(0, 0, 0, .1);
+        padding: 8px;
         margin-left: -5px;
         border-width: 1px;
         border-style: none;
         border-left: 1px solid #cec6c6;
         border-right: 1px solid #cec6c6;
     }
-    &__right{
+    &__right {
         width: 50%;
         right: 0;
         text-align: right;
     }
-    &__RightList{
+    &__RightList {
         padding: 18px;
         display: inline-block;
-        border-right: 1px solid rgba(0,0,0,.04); 
+        border-right: 1px solid rgba(0, 0, 0, .04);
     }
-    &__profile{
+    &__profile {
         border-radius: 50%;
     }
-    &__setting{
+    &__setting {
         color: #0000ff;
     }
 }
-.sideBar{
+
+.sideBar {
     width: 280px;
     position: absolute;
     right: 0;
     height: 100px;
     background-color: #ffffff;
     color: #737171;
-    padding:0 25px;
+    padding: 0 25px;
     font-size: 14px;
     height: 1495px;
     z-index: 1;
     text-align: left;
-    &__listHeader{
+    &__listHeader {
         font-weight: bold;
         padding: 10px;
         padding-top: 30px;
     }
-    &__arrowList{
+    &__arrowList {
         position: relative;
     }
-    &__arrow{
+    &__arrow {
         position: absolute;
         right: 0;
         top: 5px;
     }
-    &__subHead{
+    &__subHead {
         padding-left: 15px;
         padding-bottom: 5px;
     }
-    &__subList{
+    &__subList {
         padding-top: 5px;
         padding-left: 34px;
     }
 }
+
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     background-color: #f9fafc;
 }
 
@@ -126,11 +129,13 @@ body {
     width: 10px;
     background-color: #F5F5F5;
 }
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122, 153, 217)), color-stop(0.72, rgb(73, 125, 189)), color-stop(0.86, rgb(28, 58, 148)));
 }
-.footer{
+
+.footer {
     width: 100%;
     height: 65px;
     background-color: #ffffff;
@@ -138,17 +143,16 @@ body {
     line-height: 65px;
     padding: 0 28px;
     font-size: 13px;
-    &__left{
+    &__left {
         width: 50%;
-        
-         color: #777676;
+        color: #777676;
     }
-    &__right{
+    &__right {
         width: 50%;
         text-align: right;
         color: #7b7bf1;
     }
-    &__list{
+    &__list {
         display: inline-block;
         padding-left: 30px;
     }

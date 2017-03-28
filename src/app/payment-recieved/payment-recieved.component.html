@@ -1,3 +1,27 @@
+<toaster-container></toaster-container>
+
+<template ngbModalContainer #content let-c="close" let-d="dismiss" class="popDesign">
+  <div class="modal-header">
+    <h4 class="modal-title">Are you sure you want to allocate ?</h4>
+   
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   
+        <div class="popUpContentDesign">
+            <h2>You have selected:</h2> 
+ <h1>{{selectedFunds.clientName}} <span>with funds of</span> {{selectedFunds.depositAmount}}</h1>
+        </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="cancelBtn" (click)="c('Close click')">Cancel</button>
+    <button type="button" class="successBtn" (click)="allocateFund(selectedFunds)">Allocate</button>
+  </div>
+</template>
+<hr>
+
 <section class="paymentRecieved">
     <section class="commonHeading">
         <h1>Payment Allocated / Allocate Fund</h1>
@@ -89,44 +113,43 @@
 
                 <section class="paymentRecieved__allocateList">
                     <ul>
-                        <li class="paymentRecieved__allocateDetails" *ngFor="let list of allPaymentList">
+                        <li class="paymentRecieved__allocateDetails" *ngFor="let list of allPaymentList;let i = index" (click)="open(content);selectedAllocatedFund(list)">
                             <a>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft">
+                                <div class="row ">
+                                    <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft ">
                                         <h1>{{list.clientName}}</h1>
                                         <h2>{{list.depositReceivedDate}}</h2>
                                         <h3>{{list.depositID}}</h3>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs">
-                                        <h1><i class="fa fa-inr" aria-hidden="true"></i>{{list.depositAmount}}</h1>
+                                    <div class="col-lg-4 col-md-4 col-sm col-xs detailsRight end-lg end-md end-sm end-xs ">
+                                        <h1><i class="fa fa-inr " aria-hidden="true "></i>{{list.depositAmount}}</h1>
                                         <h2>{{list.depositStatus}}</h2>
                                     </div>
                                 </div>
                             </a>
                         </li>
 
-
-
                     </ul>
                 </section>
 
             </div>
         </section>
-        <section class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <section class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
 
-            <div class="allocateContainerGraph">
-                <div class="row allocateFilter">
+            <div class="allocateContainerGraph ">
+                <div class="row allocateFilter ">
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding ">
                         <h1>TLR Distribution Graph</h1>
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div style="display: block;">
-                            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <div style="display: block; ">
+                            <canvas baseChart [datasets]="lineChartData " [labels]="lineChartLabels " [options]="lineChartOptions " [colors]="lineChartColors " [legend]="lineChartLegend " [chartType]="lineChartType " (chartHover)="chartHovered($event)
+                            " (chartClick)="chartClicked($event) "></canvas>
                         </div>
                     </div>
                 </div>
@@ -135,45 +158,61 @@
     </section>
 
 
-    <section class=" row paymentRecieved__allocate">
-        <section class="col-lg col-md col-sm col-xs">
-            <div class="allocateContainerGraph">
-                <div class="row allocateFilter">
+    <section class=" row paymentRecieved__allocate ">
+        <section class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+            <div class="allocateContainerGraph ">
+                <div class="row allocateFilter ">
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
-                        <h1>TLR Distribution Graph</h1>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding ">
+                        <h1>Hitory Level 1</h1>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding end-lg end-sm end-md end-xs">
+                        <select [(ngModel)]="selectedMonth1" (ngModelChange)="getMonthValue1(selectedMonth1)">
+                            <option *ngFor="let month of graphMonths1" [ngValue]="month">{{month}}</option>
+                        </select>
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div style="display: block">
-                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColor" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <div style="display: block ">
+                            <canvas baseChart [datasets]="barChartData1" [labels]="barChartLabels1" [options]="barChartOptions1 " [colors]="barChartColor1 " [legend]="barChartLegend1 " [chartType]="barChartType1 " (chartHover)="chartHovered1($event)"></canvas>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <section class="col-lg col-md col-sm col-xs">
 
-            <div class="allocateContainerGraph">
-                <div class="row allocateFilter">
+        <section class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+            <div class="allocateContainerGraph ">
+                <div class="row allocateFilter ">
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs noPadding">
-                        <h1>TLR Distribution Graph</h1>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding ">
+                        <h1>Hitory Level 2</h1>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding end-lg end-sm end-md end-xs">
+
+                        <select [(ngModel)]="selectedMonth" (ngModelChange)="getMonthValue(selectedMonth)">
+                            <option *ngFor="let month of graphMonths" [ngValue]="month">{{month}}</option>
+                        </select>
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div style="display: block">
-                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <div style="display: block ">
+                            <canvas baseChart [datasets]="barChartData " [labels]="barChartLabels " [options]="barChartOptions " [legend]="barChartLegend " [chartType]="barChartType " (chartHover)="chartHovered($event)
+                            " (chartClick)="chartClicked($event) "></canvas>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
+
+
     </section>
 
 

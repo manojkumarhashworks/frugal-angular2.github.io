@@ -12,6 +12,21 @@ export class paymentRecievedService {
 
   constructor(private http : Http, private router : Router, @Inject(APP_CONFIG)private config : IAppConfig) {}
 
+
+  setAllocateFund(allocate) {
+     const body = JSON.stringify({
+	"depositID":allocate
+}
+);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.config.apiEndpoint + '/deposit/allocateFundToTlr',body,{headers:headers})
+    .map((data : Response) => {
+      return data.json().message;
+    })
+    .catch(this.handleError)
+  }
+
   gettlrGraph(date : any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
@@ -97,6 +112,36 @@ getOrMetricValue(date:any) {
       .map((data : Response) => {
         return data
           .json().outstandingReceivables;
+      })
+      .catch(this.handleError);
+}
+
+getHistoryLevel1(date:any) {
+    const body = JSON.stringify(date);
+    const headers = new Headers();
+    console.log(date)
+    headers.append('Content-Type', 'application/json');
+    return this
+      .http
+      .post(this.config.apiEndpoint + '/deposit/categoryHistoryLevel1', JSON.stringify(date),{headers: headers})
+      .map((data : Response) => {
+        return data
+          .json().results 
+      })
+      .catch(this.handleError);
+}
+
+getHistoryLevel2(date:any) {
+    const body = JSON.stringify(date);
+    const headers = new Headers();
+    console.log(date)
+    headers.append('Content-Type', 'application/json');
+    return this
+      .http
+      .post(this.config.apiEndpoint + '/deposit/categoryHistoryLevel2', JSON.stringify(date),{headers: headers})
+      .map((data : Response) => {
+        return data
+          .json().results 
       })
       .catch(this.handleError);
 }

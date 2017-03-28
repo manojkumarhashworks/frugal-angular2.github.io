@@ -4,12 +4,15 @@ import {Router, RouterModule} from '@angular/router';
 import * as moment from 'moment';
 import * as _ from "lodash";
 import {BaseChartDirective} from 'ng2-charts';
-@Component({selector: 'app-payment-recieved', templateUrl: './payment-recieved.component.html', styleUrls: ['./payment-recieved.component.scss']})
+import {ModalDismissReasons, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ToasterContainerComponent, ToasterService, ToasterModule} from 'angular2-toaster';
+
+@Component({selector: 'app-payment-recieved', templateUrl: './payment-recieved.component.html', styleUrls: ['./payment-recieved.component.scss'], providers: [ToasterService]})
 export class PaymentRecievedComponent implements OnInit {
 
   @ViewChild(BaseChartDirective)chart : BaseChartDirective;
 
-  constructor(private paymentrecivedservice : paymentRecievedService, public zone : NgZone) {}
+  constructor(private paymentrecivedservice : paymentRecievedService, public zone : NgZone, private modalService : NgbModal, private toastr : ToasterService) {}
 
   ngOnInit() {
     this.tlrGraph();
@@ -18,21 +21,127 @@ export class PaymentRecievedComponent implements OnInit {
     this.tlrMetric();
     this.undistributedFund();
     this.orMetricValue();
+    this.getHistoryLevel1();
+    this.getHistoryLevel2();
   }
 
-  //metric value 
-  tlrMetricValue:any;
-  unDistributedMetricValue:any;
-  OutStandingMetricValue:any;
+  graphMonths : Array < String > = [
+    'January',
+    'Febuary',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+   graphMonths1 : Array < String > = [
+    'January',
+    'Febuary',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+  closeResult : string;
+  public mr : NgbModalRef;
 
+  historyData : any[];
+  historyData1: any[];
+
+  open(content) {
+    this.mr = this
+      .modalService
+      .open(content);
+    this
+      .mr
+      .result
+      .then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+  }
+
+  public closeModal() {
+    this
+      .mr
+      .close();
+  }
+
+  private getDismissReason(reason : any) : string {
+    if(reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  selectedMonth : any = "January";
+  selectedMonth1:any = "January";
+  //metric value
+  tlrMetricValue : any;
+  unDistributedMetricValue : any;
+  OutStandingMetricValue : any;
+
+  selectedFunds;
+  any;
   oneYear : any = {};
   allPaymentList : any = [];
   orLabel : any;
   orValue : any;
   tlrValue : any;
-  // test() {
-  //   console.log(this.oneYearCalender())
-  // }
+  // test() {   console.log(this.oneYearCalender()) }
+
+  getMonthValue(value) {
+    this.history1();
+  }
+
+  getMonthValue1(value) {
+    this.history2();
+  }
+
+  selectedAllocatedFund(value) {
+    this.selectedFunds = value;
+  }
+
+  allocateFund(value) {
+    console.log(value)
+    this
+      .paymentrecivedservice
+      .setAllocateFund(value.depositID)
+      .subscribe(data => {
+        console.log(data);
+        this.tlrMetric();
+        this.getPaymentList();
+        this.tlrGraph();
+        this.orGraph();
+        const toast : any = {
+          type: 'success',
+          body: `You have successfully allocated the fund`,
+          timeout: 2000
+        };
+        this
+          .toastr
+          .pop(toast);
+        this.closeModal();
+      }, error => {
+        console.log(error);
+      })
+  }
+
   oneYearCalender() {
     let currentDate : any = moment();
     let startDate = currentDate
@@ -174,7 +283,7 @@ export class PaymentRecievedComponent implements OnInit {
   }
 
   tlrMetric() {
-     this.oneYear = {
+    this.oneYear = {
       endDate: this
         .oneYearCalender()
         .endDate,
@@ -182,20 +291,19 @@ export class PaymentRecievedComponent implements OnInit {
         .oneYearCalender()
         .startDate
     }
-    
-    this.paymentrecivedservice.getTrlMetricValue(this.oneYear)
-    .subscribe(
-      data=> {
+
+    this
+      .paymentrecivedservice
+      .getTrlMetricValue(this.oneYear)
+      .subscribe(data => {
         this.tlrMetricValue = data;
-      },
-      error => {
+      }, error => {
         console.log(error);
-      }
-    )
+      })
   }
 
   undistributedFund() {
-     this.oneYear = {
+    this.oneYear = {
       endDate: this
         .oneYearCalender()
         .endDate,
@@ -203,16 +311,15 @@ export class PaymentRecievedComponent implements OnInit {
         .oneYearCalender()
         .startDate
     }
-    
-    this.paymentrecivedservice.getUndistributedFundMetric(this.oneYear)
-    .subscribe(
-      data=> {
+
+    this
+      .paymentrecivedservice
+      .getUndistributedFundMetric(this.oneYear)
+      .subscribe(data => {
         this.unDistributedMetricValue = data[0].UndistributedFund;
-      },
-      error => {
+      }, error => {
         console.log(error);
-      }
-    )
+      })
   }
 
   orMetricValue() {
@@ -224,16 +331,132 @@ export class PaymentRecievedComponent implements OnInit {
         .oneYearCalender()
         .startDate
     }
-    
-    this.paymentrecivedservice.getOrMetricValue(this.oneYear)
-    .subscribe(
-      data=> {
+
+    this
+      .paymentrecivedservice
+      .getOrMetricValue(this.oneYear)
+      .subscribe(data => {
         this.OutStandingMetricValue = data;
-      },
-      error => {
+      }, error => {
         console.log(error);
+      })
+  }
+
+  getHistoryLevel1() {
+    this.oneYear = {
+      endDate: this
+        .oneYearCalender()
+        .endDate,
+      startDate: this
+        .oneYearCalender()
+        .startDate
+    }
+    this
+      .paymentrecivedservice
+      .getHistoryLevel1(this.oneYear)
+      .subscribe(data => {
+
+        this.historyData = data;
+        this.history1();
+      }, error => {
+        const toast : any = {
+          type: 'error',
+          body: `Error in Fetching History Level 1 Graph`,
+          timeout: 2000
+        };
+        this
+          .toastr
+          .pop(toast);
+      })
+  }
+
+  getHistoryLevel2() {
+     this.oneYear = {
+      endDate: this
+        .oneYearCalender()
+        .endDate,
+      startDate: this
+        .oneYearCalender()
+        .startDate
+    }
+    this
+      .paymentrecivedservice
+      .getHistoryLevel2(this.oneYear)
+      .subscribe(data => {
+
+        this.historyData1 = data;
+        this.history2();
+        console.log(data);
+      }, error => {
+        const toast : any = {
+          type: 'error',
+          body: `Error in Fetching History Level 1 Graph`,
+          timeout: 2000
+        };
+        this
+          .toastr
+          .pop(toast);
+      })
+  }
+
+  private history1() : void {
+
+    let temp = [];
+    let month = this.selectedMonth;
+    let index = -1;
+    let data = this.historyData;
+    for (let i = 0; i < data.length; i++) {
+
+      if (data[i].monthName === month) {
+        index = i;
+        break;
       }
-    )
+    }
+
+    if (index === -1) {
+      temp = [];
+    } else {
+      temp[0] = data[index].categoryDetails[0].categoryAmountAllocatedTotal;
+      temp[1] = data[index].categoryDetails[1].categoryAmountAllocatedTotal;
+      temp[2] = data[index].categoryDetails[2].categoryAmountAllocatedTotal;
+
+    }
+
+    //  this.barChartData[0].data=[200,100,50];
+    let clone = JSON.parse(JSON.stringify(this.barChartData));
+    clone[0].data = temp;
+    this.barChartData = clone;
+    //this.barChartData[0].data.splice(0);
+  }
+
+    private history2() : void {
+
+    let temp = [];
+    let month = this.selectedMonth1;
+    let index = -1;
+    let data = this.historyData1;
+    for (let i = 0; i < data.length; i++) {
+
+      if (data[i].monthName === month) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index === -1) {
+      temp = [];
+    } else {
+      temp[0] = data[index].categoryDetails[0].categoryAmountAllocatedTotal;
+      temp[1] = data[index].categoryDetails[1].categoryAmountAllocatedTotal;
+      temp[2] = data[index].categoryDetails[2].categoryAmountAllocatedTotal;
+
+    }
+
+    //  this.barChartData[0].data=[200,100,50];
+    let clone = JSON.parse(JSON.stringify(this.barChartData1));
+    clone[0].data = temp;
+    this.barChartData1 = clone;
+    //this.barChartData[0].data.splice(0);
   }
 
   public lineChartData : Array < any > = [
@@ -271,36 +494,45 @@ export class PaymentRecievedComponent implements OnInit {
 
   public barChartOptions : any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    maintainAspectRatio: true
   };
-  public barChartLabels : string[] = [
-    '2006',
-    '2007',
-    '2008',
-    '2009',
-    '2010',
-    '2011',
-    '2012'
-  ];
+  public barChartLabels : string[] = ['Cost of Service', 'Tax', 'Real Revenue'];
   public barChartType : string = 'bar';
   public barChartLegend : boolean = true;
 
   public barChartData : any[] = [
     {
-      data: [
-        65,
-        59,
-        70,
-        81,
-        56,
-        55,
-        40
-      ],
+      data: [],
       label: 'Series A'
     }
   ];
 
   public barChartColor : Array < any > = [
+    {
+      backgroundColor: '#86C7F3'
+    }
+  ]
+
+
+
+   public barChartOptions1 : any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    maintainAspectRatio: true
+  };
+  public barChartLabels1 : string[] = ['Operating Expenses', 'Company Profit', 'Owners Payout'];
+  public barChartType1 : string = 'bar';
+  public barChartLegend1 : boolean = true;
+
+  public barChartData1 : any[] = [
+    {
+      data: [],
+      label: 'Series A'
+    }
+  ];
+
+  public barChartColor1 : Array < any > = [
     {
       backgroundColor: '#86C7F3'
     }
