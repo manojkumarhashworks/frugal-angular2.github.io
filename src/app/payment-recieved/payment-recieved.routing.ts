@@ -1,3 +1,4 @@
+import { AuthGuard } from './../core/auth.guard';
 import { PaymentRecievedComponent } from './payment-recieved.component';
 import { RouterModule,Router } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,8 @@ import { NgModule } from '@angular/core';
     imports:[RouterModule.forChild([
         {
             path:'paymentrecieved',
-            component:PaymentRecievedComponent
+            component:PaymentRecievedComponent,
+            canActivate:[AuthGuard]
         }
     ]) ],
     exports:[RouterModule]

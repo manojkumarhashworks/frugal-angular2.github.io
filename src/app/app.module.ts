@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { PaymentRecievedModule } from './payment-recieved/payment-recieved.module';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { FundDistributionModule } from './fund-distribution/fund-distribution.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -31,7 +33,8 @@ import { FundDistributionModule } from './fund-distribution/fund-distribution.mo
     PaymentRecievedModule,
     ChartsModule,
     FundDistributionModule,
-    ToasterModule
+    ToasterModule,
+    CoreModule
   ],
    providers: [{ provide: APP_CONFIG, useValue: AppConfig }],
   bootstrap: [AppComponent]

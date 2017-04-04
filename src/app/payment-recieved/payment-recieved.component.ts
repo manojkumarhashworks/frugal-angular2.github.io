@@ -1,5 +1,7 @@
+
 import {paymentRecievedService} from './payment-recieved.service';
-import {Component, OnInit, NgZone, ViewChild} from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild} from '@angular/core';
+
 import {Router, RouterModule} from '@angular/router';
 import * as moment from 'moment';
 import * as _ from "lodash";
@@ -7,7 +9,13 @@ import {BaseChartDirective} from 'ng2-charts';
 import {ModalDismissReasons, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ToasterContainerComponent, ToasterService, ToasterModule} from 'angular2-toaster';
 
-@Component({selector: 'app-payment-recieved', templateUrl: './payment-recieved.component.html', styleUrls: ['./payment-recieved.component.scss'], providers: [ToasterService]})
+
+@Component({
+  selector: 'app-payment-recieved', 
+  templateUrl: './payment-recieved.component.html',
+  styleUrls: ['./payment-recieved.component.scss'], 
+  providers: [ToasterService]   
+})
 export class PaymentRecievedComponent implements OnInit {
 
   @ViewChild(BaseChartDirective)chart : BaseChartDirective;
@@ -25,6 +33,31 @@ export class PaymentRecievedComponent implements OnInit {
     this.getHistoryLevel2();
   }
 
+showAllPyament=[];
+  searchFilter=[{
+    name:'RECEIVED'
+  },
+  {
+    name:'ALLOCATED'
+  }]
+
+  filterStatus(value) {
+    //     if(this.allPaymentList.length === 0) {
+    //   return value;
+    // }
+    // let resultArray = [];
+    // for (let item of this.allPaymentList) {
+    //   if(item.depositStatus.match(value) != null) {
+    //     resultArray.push(item);
+    //   }
+    // }
+    // this.showAllPyament = resultArray;
+    this.showAllPyament = 
+    this.allPaymentList.filter((item)=> {
+      return item.depositStatus.match(value) != null
+    })
+  }
+ 
   graphMonths : Array < String > = [
     'January',
     'Febuary',
@@ -143,6 +176,7 @@ export class PaymentRecievedComponent implements OnInit {
   }
 
   oneYearCalender() {
+   
     let currentDate : any = moment();
     let startDate = currentDate
       .subtract(2, "y")
@@ -152,6 +186,7 @@ export class PaymentRecievedComponent implements OnInit {
   }
 
   tlrGraph() {
+   
     this.oneYear = {
       endDate: this
         .oneYearCalender()
@@ -277,6 +312,7 @@ export class PaymentRecievedComponent implements OnInit {
       .getPaymentReceivedList(this.oneYear)
       .subscribe(data => {
         this.allPaymentList = data;
+        this.showAllPyament = this.allPaymentList;
       }, error => {
         console.log(error);
       })
@@ -296,6 +332,7 @@ export class PaymentRecievedComponent implements OnInit {
       .paymentrecivedservice
       .getTrlMetricValue(this.oneYear)
       .subscribe(data => {
+       
         this.tlrMetricValue = data;
       }, error => {
         console.log(error);

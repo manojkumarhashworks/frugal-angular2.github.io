@@ -1,3 +1,4 @@
+import { AuthService } from './../core/auth.service';
 import {Injectable, Inject} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
@@ -10,7 +11,7 @@ import {APP_CONFIG, IAppConfig} from '../app.config';
 
 export class paymentRecievedService {
 
-  constructor(private http : Http, private router : Router, @Inject(APP_CONFIG)private config : IAppConfig) {}
+  constructor(private http : Http, private router : Router, @Inject(APP_CONFIG)private config : IAppConfig,private authservice:AuthService) {}
 
 
   setAllocateFund(allocate) {
@@ -19,10 +20,12 @@ export class paymentRecievedService {
 }
 );
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post(this.config.apiEndpoint + '/deposit/allocateFundToTlr',body,{headers:headers})
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
+     return this.http.post(this.config.apiEndpoint + '/deposit/allocateFundToTlr',body,{headers:headers})
     .map((data : Response) => {
       return data.json().message;
+     
     })
     .catch(this.handleError)
   }
@@ -30,7 +33,8 @@ export class paymentRecievedService {
   gettlrGraph(date : any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getTlrGraphDetails', JSON.stringify(date), {headers: headers})
@@ -45,7 +49,8 @@ export class paymentRecievedService {
   getorGraph(date : any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getOrGraphDetails', JSON.stringify(date), {headers: headers})
@@ -60,7 +65,8 @@ export class paymentRecievedService {
   getPaymentReceivedList(date : any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getPaymentReceivedList', JSON.stringify(date), {headers: headers})
@@ -76,11 +82,13 @@ export class paymentRecievedService {
   getTrlMetricValue(date:any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getTlrSum', JSON.stringify(date),{headers: headers})
       .map((data : Response) => {
+       
         return data
           .json().topLineRevenue;
       })
@@ -91,7 +99,8 @@ export class paymentRecievedService {
 getUndistributedFundMetric(date) {
    const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getUndistributedDepositSum', JSON.stringify(date),{headers: headers})
@@ -105,7 +114,8 @@ getUndistributedFundMetric(date) {
 getOrMetricValue(date:any) {
    const body = JSON.stringify(date);
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/getOutstandingReceivables', JSON.stringify(date),{headers: headers})
@@ -120,7 +130,8 @@ getHistoryLevel1(date:any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
     console.log(date)
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/categoryHistoryLevel1', JSON.stringify(date),{headers: headers})
@@ -135,7 +146,8 @@ getHistoryLevel2(date:any) {
     const body = JSON.stringify(date);
     const headers = new Headers();
     console.log(date)
-    headers.append('Content-Type', 'application/json');
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
     return this
       .http
       .post(this.config.apiEndpoint + '/deposit/categoryHistoryLevel2', JSON.stringify(date),{headers: headers})

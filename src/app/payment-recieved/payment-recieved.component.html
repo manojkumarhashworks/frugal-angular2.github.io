@@ -1,5 +1,6 @@
 <toaster-container></toaster-container>
 
+
 <template ngbModalContainer #content let-c="close" let-d="dismiss" class="popDesign">
   <div class="modal-header">
     <h4 class="modal-title">Are you sure you want to allocate ?</h4>
@@ -20,7 +21,7 @@
     <button type="button" class="successBtn" (click)="allocateFund(selectedFunds)">Allocate</button>
   </div>
 </template>
-<hr>
+
 
 <section class="paymentRecieved">
     <section class="commonHeading">
@@ -83,7 +84,7 @@
                         <h1>Outstanding <span> Receivables </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{OutStandingMetricValue}}</h2>
+                        <h2>{{OutStandingMetricValue | currency:'INR':true:'1.2-2'}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -100,8 +101,8 @@
 
                     <div class="col-lg-7 col-md-7 col-sm col-xs noPadding">
                         <h1>Filter:</h1>
-                        <select>
-                            <option>Allocated</option>
+                        <select [(ngModel)]="model" (change)="filterStatus(model)">
+                            <option *ngFor="let status of searchFilter" [ngValue]="status.name">{{status.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm col-xs end-lg end-md end-sm noPadding">
@@ -113,7 +114,7 @@
 
                 <section class="paymentRecieved__allocateList">
                     <ul>
-                        <li class="paymentRecieved__allocateDetails" *ngFor="let list of allPaymentList;let i = index" (click)="open(content);selectedAllocatedFund(list)">
+                        <li class="paymentRecieved__allocateDetails" *ngFor="let list of showAllPyament;let i = index" (click)="open(content);selectedAllocatedFund(list)">
                             <a>
                                 <div class="row ">
                                     <div class="col-lg-8 col-md-8 col-sm col-xs detailsLeft ">
