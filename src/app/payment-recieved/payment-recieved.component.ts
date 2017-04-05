@@ -183,7 +183,7 @@ showAllPyament=[];
       .format("YYYY-MM-DD");
     let endDate = moment().format("YYYY-MM-DD");
     return {startDate: startDate, endDate: endDate}
-  }
+  } 
 
   tlrGraph() {
    

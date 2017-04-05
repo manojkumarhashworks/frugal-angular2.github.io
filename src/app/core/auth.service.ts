@@ -13,11 +13,13 @@ export class AuthService {
         this.isAuthenticated();
     }
 
+ logout() {
+        localStorage.clear();
+        this.userLoggedIn = false;
+          this.router.navigate(['/login']);
+    }
 
-    // logout() {
-    //     localStorage.clear();
-    //     this.userLoggedIn = false;
-    // }
+  
 
     isAuthenticated() {
 

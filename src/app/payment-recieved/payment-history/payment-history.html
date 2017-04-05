@@ -25,7 +25,7 @@
 
 <section class="paymentRecieved">
     <section class="commonHeading">
-        <h1>Payment Allocated / Allocate Fund</h1>
+        <h1>Payment Allocated / History Fund</h1>
     </section>
 
     <section class="row CommonMetricBox">
@@ -33,7 +33,7 @@
             <div class="CommonMetricBox__container" style="background-color: #5E6DB3">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm col-xs">
-                        <h1>Top Line <span> Revenue </span></h1>
+                        <h1>Total Payment<span> Received </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
 
@@ -49,7 +49,7 @@
             <div class="CommonMetricBox__container" style="background-color: #00CA95">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm col-xs">
-                        <h1>Unallocated<span> Fund </span></h1>
+                        <h1>No. of Payment <span> Received </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
                         <h2><i class="fa fa-inr" aria-hidden="true"></i>1200</h2>
@@ -65,7 +65,7 @@
             <div class="CommonMetricBox__container" style="background-color: #31CFF9">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm col-xs">
-                        <h1>Undistributed<span> Fund </span></h1>
+                        <h1>Outstanding <span> Receivables </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
 
@@ -77,21 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class=" col-sm-12 col-md col-lg col-xs-12">
-            <div class="CommonMetricBox__container" style="background-color: #FD7B6C">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm col-xs">
-                        <h1>Outstanding <span> Receivables </span></h1>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2>{{OutStandingMetricValue | currency:'INR':true:'1.2-2'}}</h2>
-                    </div>
-                </div>
-                <div class="CommonMetricBox__container--styleDivider">
 
-                </div>
-            </div>
-        </div>
     </section>
 
     <section class=" row paymentRecieved__allocate">
@@ -165,7 +151,7 @@
                 <div class="row allocateFilter ">
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding ">
-                        <h1>TLR Distribution</h1>
+                        <h1>Hitory Level 1</h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding end-lg end-sm end-md end-xs">
                         <select [(ngModel)]="selectedMonth1" (ngModelChange)="getMonthValue1(selectedMonth1)">
@@ -191,7 +177,7 @@
                 <div class="row allocateFilter ">
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding ">
-                        <h1>WCD Graph</h1>
+                        <h1>Hitory Level 2</h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding end-lg end-sm end-md end-xs">
 

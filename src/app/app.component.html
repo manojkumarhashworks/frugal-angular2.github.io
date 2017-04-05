@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" *ngIf="authservice.isAuthenticated()">
     <div class="header__left">
         <ul class="header__listHeaderLinks">
 
@@ -8,7 +8,7 @@
 
         <div class="header__search">
             <button class="header__slider">
-        <i class="fa fa-sliders" aria-hidden="true"></i>
+       <i class="fa fa-sliders" aria-hidden="true"></i>
     </button>
             <input type="text" placeholder="search.." class="header__searchbox">
             <button class="header__searchicon">
@@ -17,14 +17,19 @@
         </div>
     </div>
     <ul class="header__right">
+
         <li class="header__RightList"> <i class="fa fa-bell-o" aria-hidden="true"></i></li>
         <li class="header__list"> <img class="header__logo header__profile" src="src/images/th.jpg"></li>
         <li class="header__RightList header__setting"> <i class="fa fa-cog" aria-hidden="true"></i></li>
-        <li class="header__list"><i class="fa fa-bars" aria-hidden="true"></i> </li>
+        <a (click)="showNav = !showNav">
+            <li class="header__list"><i class="fa fa-bars" aria-hidden="true"></i> </li>
+        </a>
+
+
     </ul>
 
 </header>
-<div class="sideBar">
+<div class="sideBar" *ngIf="showNav;" [@fadeInOut]="showNav" [hidden]="!authservice.isAuthenticated()">
     <ul>
         <li class="sideBar__listHeader">DASHBOARDS</li>
         <li class="sideBar__arrowList"><i class="fa fa-tachometer" aria-hidden="true"></i>
@@ -70,10 +75,11 @@
                 <li class="sideBar__subList">Basic Tables</li>
             </ul>
         </li>
+        <li><a (click)="authservice.logout()">Logout</a></li>
     </ul>
 </div>
 <router-outlet></router-outlet>
-<footer class="footer">
+<footer class="footer" [hidden]="!authservice.isAuthenticated()">
     <div class="footer__left">
         2017 @ frugal
     </div>

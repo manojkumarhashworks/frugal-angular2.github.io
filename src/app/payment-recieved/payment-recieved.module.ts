@@ -1,3 +1,5 @@
+import { PaymentRecievedHistoryService } from './payment-history/payment-history.service';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 import { paymentRecievedService } from './payment-recieved.service';
 import { PaymentRecievedRouting } from './payment-recieved.routing';
 import { PaymentRecievedComponent } from './payment-recieved.component';
@@ -13,7 +15,7 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
   imports: [
     CommonModule,PaymentRecievedRouting,ChartsModule, NgbModule.forRoot(),ToasterModule,FormsModule
   ],
-  declarations: [PaymentRecievedComponent],
-    providers: [paymentRecievedService]
+  declarations: [PaymentRecievedComponent,PaymentHistoryComponent],
+    providers: [paymentRecievedService,PaymentRecievedHistoryService]
 })
 export class PaymentRecievedModule{}
