@@ -14,7 +14,17 @@ export class PaymentRecievedHistoryService {
 constructor(private http : Http, private router : Router, @Inject(APP_CONFIG)private config : IAppConfig,private authservice:AuthService) {}
 
 
+getPaymentHistoryDetails (date:any) {
+     const body = JSON.stringify(date);
+    const headers = new Headers();
+    headers.append('token', this.authservice.getLoggedInUser().token);
+ headers.append('Content-Type', 'application/json');
+ return this.http.post(this.config.apiEndpoint + '/deposit/getPaymentReceivedDetails',body,{headers:headers})
+ .map((data: Response) => {
+        return data.json().results[0];
 
+ })
+}
 
 
 }

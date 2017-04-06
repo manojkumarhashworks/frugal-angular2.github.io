@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
 
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{tlrMetricValue}}</h2>
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{metricDetails?.totalPaymentReceivedSum | number : fractionSize}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -52,7 +52,7 @@
                         <h1>No. of Payment <span> Received </span></h1>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>1200</h2>
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{metricDetails?.totalPaymentReceived | number : fractionSize}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm col-xs end-lg">
 
-                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{unDistributedMetricValue}}</h2>
+                        <h2><i class="fa fa-inr" aria-hidden="true"></i>{{metricDetails?.outstandingReceivables | number : fractionSize}}</h2>
                     </div>
                 </div>
                 <div class="CommonMetricBox__container--styleDivider">
